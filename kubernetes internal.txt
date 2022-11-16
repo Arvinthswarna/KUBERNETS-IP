@@ -1,0 +1,59 @@
+Customer-Service:
+
+
+docker build -t customer-service .
+docker tag customer-service arvinth97/customer-service:latest
+docker push arvinth97/customer-service:latest
+minikube start
+kubectl apply -f deployment.yaml
+kubectl get deployments
+minikube service spring-customer-service
+
+
+D:\Internal project\Kubernetes\customer-service>minikube service spring-customer-service
+! Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 2.4948041s
+* Restarting the docker service may improve performance.
+|-----------|-------------------------|-------------|---------------------------|
+| NAMESPACE |          NAME           | TARGET PORT |            URL            |
+|-----------|-------------------------|-------------|---------------------------|
+| default   | spring-customer-service |        8080 | http://192.168.49.2:31918 |
+|-----------|-------------------------|-------------|---------------------------|
+* Starting tunnel for service spring-customer-service.
+|-----------|-------------------------|-------------|------------------------|
+| NAMESPACE |          NAME           | TARGET PORT |          URL           |
+|-----------|-------------------------|-------------|------------------------|
+| default   | spring-customer-service |             | http://127.0.0.1:52043 |
+|-----------|---------
+
+
+minikube dashboard
+
+
+CUSTOMERS-SERVICE:
+
+docker tag customer-service arvinth97/customers-service:latest
+docker push arvinth97/customers-service:latest
+
+
+Tour-Service:
+
+
+docker build -t tour-service .
+docker tag tour-service arvinth97/tour-service:latest
+docker push arvinth97/tour-service:latest
+minikube start
+kubectl apply -f deployment.yaml
+kubectl get deployments
+minikube service spring-tour-service
+
+
+Booking-service:
+
+docker build -t booking-service .
+docker tag booking-service arvinth97/booking-service:latest
+docker push arvinth97/booking-service:latest
+minikube start
+kubectl apply -f deployment.yaml
+kubectl get deployments
+minikube service spring-booking-service
+minikube dashboard
